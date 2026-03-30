@@ -180,24 +180,24 @@ function LoginForm() {
                             </div>
 
                             {/* Mode toggle tabs */}
-                            <div className="flex mb-6 border border-[#00ff88]/20">
+                            <div className="flex mb-6 gap-2">
                                 <button
                                     onClick={() => { setIsSignUp(false); setError(null); setMessage(null); }}
-                                    className={`flex-1 py-2 text-xs font-bold tracking-widest transition-all ${!isSignUp
-                                        ? "bg-[#00ff88] text-black"
-                                        : "text-[#00ff88]/50 hover:text-[#00ff88] hover:bg-[#00ff88]/5"
+                                    className={`flex-1 py-2.5 text-xs font-black tracking-widest transition-all border ${!isSignUp
+                                            ? "bg-[#00ff88] text-black border-[#00ff88]"
+                                            : "text-[#8899aa] border-white/10 hover:border-[#00ff88]/40 hover:text-[#00ff88]"
                                         }`}
                                 >
                                     CONNECT_
                                 </button>
                                 <button
                                     onClick={() => { setIsSignUp(true); setError(null); setMessage(null); }}
-                                    className={`flex-1 py-2 text-xs font-bold tracking-widest transition-all ${isSignUp
-                                        ? "bg-[#00ff88] text-black"
-                                        : "text-[#00ff88]/50 hover:text-[#00ff88] hover:bg-[#00ff88]/5"
+                                    className={`flex-1 py-2.5 text-xs font-black tracking-widest transition-all border ${isSignUp
+                                            ? "bg-[#00ff88] text-black border-[#00ff88]"
+                                            : "text-[#00ff88] border-[#00ff88]/50 bg-[#00ff88]/5 hover:bg-[#00ff88]/15 hover:border-[#00ff88]"
                                         }`}
                                 >
-                                    REGISTER_
+                                    S&apos;INSCRIRE ↗
                                 </button>
                             </div>
 
@@ -264,7 +264,19 @@ function LoginForm() {
                                 </button>
                             </form>
 
-                            <div className="mt-6 pt-4 border-t border-[#00ff88]/10 text-[#8899aa]/40 text-xs">
+                            <div className="mt-5 text-center">
+                                <button
+                                    type="button"
+                                    onClick={() => { setIsSignUp(!isSignUp); setError(null); setMessage(null); }}
+                                    className="text-xs text-[#8899aa] hover:text-[#00ff88] transition-colors underline underline-offset-4"
+                                >
+                                    {isSignUp
+                                        ? "Déjà un compte ? → CONNECT_"
+                                        : "Pas encore de compte ? → S'INSCRIRE"}
+                                </button>
+                            </div>
+
+                            <div className="mt-4 pt-4 border-t border-[#00ff88]/10 text-[#8899aa]/40 text-xs">
                                 <span>[ SYS ] AES-256 | TLS 1.3 | GDPR</span>
                             </div>
                         </div>
