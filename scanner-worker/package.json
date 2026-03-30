@@ -1,0 +1,16 @@
+{
+    "name": "scanner-worker",
+    "version": "1.0.0",
+    "description": "SecuScan — Scanner worker pour audits de cybersécurité",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js",
+        "dev": "node --watch index.js"
+    },
+    "keywords": [
+        "cybersecurity",
+        "scanner",
+        "audit"
+    ],
+    "license": "MIT"
+}
