@@ -15,9 +15,9 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "SecuScan — Audit de Cybersécurité",
+  title: "SecuScan — Application Security Platform",
   description:
-    "Plateforme SaaS d'audit de cybersécurité. Scannez vos applications web pour détecter les vulnérabilités et recevez des rapports détaillés.",
+    "Comprehensive vulnerability scanning platform. Automated DAST, API security testing, compliance mapping, and actionable remediation — all in one dashboard.",
 };
 
 export default function RootLayout({
@@ -27,12 +27,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased",
           geistSans.variable,
           geistMono.variable
         )}
+        style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
       >
         {children}
       </body>

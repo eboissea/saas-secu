@@ -1,203 +1,420 @@
 import Link from "next/link";
-import { ArrowRight, Shield, Zap, Eye, Lock } from "lucide-react";
+import {
+  Shield,
+  ArrowRight,
+  Zap,
+  Eye,
+  TrendingUp,
+  AlertTriangle,
+  Globe,
+  Cloud,
+  FileCheck,
+  GitBranch,
+  ChevronRight,
+  BarChart3,
+  Scan,
+} from "lucide-react";
+
+const FEATURES = [
+  {
+    icon: Scan,
+    title: "DAST Scanner",
+    desc: "Scans dynamiques automatisés détectant XSS, injections SQL, CSRF et plus. Couvre le OWASP Top 10 en profondeur.",
+    color: "from-indigo-500 to-blue-500",
+  },
+  {
+    icon: Shield,
+    title: "Pentest Automatisé",
+    desc: "Simulation d'attaques réalistes combinant scans automatisés et validation pour éliminer les faux positifs.",
+    color: "from-blue-500 to-cyan-500",
+  },
+  {
+    icon: Globe,
+    title: "API Security",
+    desc: "Test de sécurité REST & GraphQL. Détection de failles d'authentification, injection, et exposition de données.",
+    color: "from-cyan-500 to-teal-500",
+  },
+  {
+    icon: Cloud,
+    title: "Cloud Security",
+    desc: "Audit des configurations AWS, GCP, Azure. Détection des IAM risks, buckets ouverts et misconfigurations.",
+    color: "from-violet-500 to-purple-500",
+  },
+  {
+    icon: FileCheck,
+    title: "Compliance",
+    desc: "Mapping automatique OWASP, SOC 2, GDPR, ISO 27001, HIPAA. Rapports prêts pour l'audit.",
+    color: "from-emerald-500 to-green-500",
+  },
+  {
+    icon: GitBranch,
+    title: "CI/CD Integration",
+    desc: "Intégration native avec GitHub, GitLab, Jenkins, Slack et Jira. Scans automatiques à chaque déploiement.",
+    color: "from-orange-500 to-amber-500",
+  },
+];
+
+const STATS = [
+  { value: "10K+", label: "Scans effectués", icon: TrendingUp },
+  { value: "50K+", label: "Vulnérabilités détectées", icon: AlertTriangle },
+  { value: "99.9%", label: "Uptime garanti", icon: Zap },
+  { value: "<60s", label: "Temps de scan moyen", icon: BarChart3 },
+];
+
+const INTEGRATIONS = [
+  "GitHub", "GitLab", "Jenkins", "Slack", "Jira", "AWS", "Docker", "Kubernetes",
+];
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-[#050a0e] text-white font-mono overflow-hidden">
-      {/* Scanline overlay */}
-      <div
-        className="fixed inset-0 pointer-events-none z-10 opacity-[0.03]"
-        style={{
-          backgroundImage:
-            "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,255,136,0.1) 2px, rgba(0,255,136,0.1) 4px)",
-        }}
-      />
-
-      {/* Animated hex grid background */}
-      <div className="fixed inset-0 z-0 overflow-hidden">
+    <div
+      className="min-h-screen text-white overflow-hidden"
+      style={{ background: "var(--astra-bg)" }}
+    >
+      {/* Background orbs */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden">
         <div
-          className="absolute inset-0 opacity-10"
+          className="absolute w-[600px] h-[600px] rounded-full blur-[120px] opacity-20"
           style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='52' viewBox='0 0 60 52' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 17.3V34.7L30 52L0 34.7V17.3L30 0Z' fill='none' stroke='%2300ff88' stroke-width='0.5'/%3E%3C/svg%3E")`,
-            backgroundSize: "60px 52px",
-            animation: "pulse 8s ease-in-out infinite",
+            background: "radial-gradient(circle, var(--astra-primary), transparent 70%)",
+            top: "-10%",
+            right: "-10%",
+            animation: "floatOrb 20s ease-in-out infinite",
           }}
         />
-        {/* Radial glow */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#00ff88]/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#0066ff]/5 rounded-full blur-3xl" />
+        <div
+          className="absolute w-[500px] h-[500px] rounded-full blur-[100px] opacity-15"
+          style={{
+            background: "radial-gradient(circle, var(--astra-blue), transparent 70%)",
+            bottom: "10%",
+            left: "-10%",
+            animation: "floatOrb 25s ease-in-out infinite reverse",
+          }}
+        />
       </div>
 
       {/* Navigation */}
-      <nav className="relative z-20 border-b border-[#00ff88]/10 bg-[#050a0e]/80 backdrop-blur-md">
+      <nav
+        className="relative z-50 backdrop-blur-xl border-b"
+        style={{
+          background: "rgba(10, 14, 26, 0.8)",
+          borderColor: "var(--astra-border)",
+        }}
+      >
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 border border-[#00ff88] flex items-center justify-center">
-              <Shield className="h-4 w-4 text-[#00ff88]" />
-            </div>
-            <div>
-              <span className="text-[#00ff88] font-bold tracking-widest text-sm">
-                SECU
+          <div className="flex items-center gap-8">
+            <Link href="/" className="flex items-center gap-2.5">
+              <div
+                className="w-8 h-8 rounded-lg flex items-center justify-center"
+                style={{
+                  background: "linear-gradient(135deg, var(--astra-primary), var(--astra-blue))",
+                }}
+              >
+                <Shield className="h-4 w-4 text-white" />
+              </div>
+              <span className="text-lg font-bold tracking-tight">
+                <span style={{ color: "var(--astra-text)" }}>Secu</span>
+                <span style={{ color: "var(--astra-primary)" }}>Scan</span>
               </span>
-              <span className="text-white font-bold tracking-widest text-sm">
-                SCAN
-              </span>
+            </Link>
+            <div className="hidden md:flex items-center gap-6">
+              {["Produit", "Fonctionnalités", "Tarifs", "Documentation"].map((item) => (
+                <a
+                  key={item}
+                  href="#"
+                  className="text-sm transition-colors"
+                  style={{ color: "var(--astra-text-secondary)" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = "var(--astra-text)")}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "var(--astra-text-secondary)")}
+                >
+                  {item}
+                </a>
+              ))}
             </div>
-            <span className="text-[#00ff88]/40 text-xs ml-2">&#47;&#47; v1.0.0</span>
           </div>
-          <div className="flex items-center gap-2 text-xs">
-            <span className="text-[#00ff88]/40 hidden sm:inline">
-              [ SYSTEM_STATUS: ONLINE ]
-            </span>
+          <div className="flex items-center gap-3">
             <Link
               href="/login"
-              className="px-4 py-2 border border-[#00ff88]/30 text-[#00ff88] hover:bg-[#00ff88]/10 hover:border-[#00ff88] transition-all"
+              className="text-sm px-4 py-2 rounded-lg transition-all"
+              style={{ color: "var(--astra-text-secondary)" }}
             >
-              CONNECT_
+              Connexion
             </Link>
             <Link
               href="/login?mode=signup"
-              className="px-4 py-2 bg-[#00ff88] text-black font-bold hover:bg-[#00ff88]/90 transition-all"
+              className="text-sm px-5 py-2 rounded-lg font-semibold text-white transition-all hover:opacity-90"
+              style={{
+                background: "linear-gradient(135deg, var(--astra-primary), var(--astra-blue))",
+              }}
             >
-              REGISTER_
+              Commencer gratuitement
             </Link>
           </div>
         </div>
       </nav>
 
       {/* Hero */}
-      <section className="relative z-20 max-w-7xl mx-auto px-6 pt-24 pb-20">
-        {/* Tag */}
-        <div className="inline-flex items-center gap-2 mb-8 px-3 py-1.5 border border-[#00ff88]/30 bg-[#00ff88]/5">
-          <div className="w-2 h-2 bg-[#00ff88] rounded-full animate-pulse" />
-          <span className="text-[#00ff88] text-xs tracking-widest">
-            THREAT_DETECTION_ACTIVE
-          </span>
-        </div>
-
-        <h1 className="text-5xl md:text-7xl font-black tracking-tight leading-none mb-2">
-          <span className="text-white">AUDIT YOUR</span>
-          <br />
-          <span
-            className="text-[#00ff88]"
-            style={{ textShadow: "0 0 40px rgba(0,255,136,0.4)" }}
+      <section className="relative z-10 max-w-7xl mx-auto px-6 pt-20 pb-24 md:pt-28 md:pb-32">
+        <div className="max-w-3xl">
+          {/* Badge */}
+          <div
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-medium mb-8"
+            style={{
+              background: "var(--astra-primary-muted)",
+              color: "var(--astra-primary-hover)",
+              border: "1px solid rgba(99, 102, 241, 0.2)",
+            }}
           >
-            ATTACK SURFACE
-          </span>
-        </h1>
-        <p className="text-[#00ff88]/30 text-2xl md:text-4xl font-black tracking-tight mb-8">
-          BEFORE THEY DO.
-        </p>
-
-        <p className="text-[#8899aa] max-w-xl text-sm leading-relaxed mb-10">
-          SecuScan scanne vos applications en profondeur — XSS, injections SQL,
-          mauvaises configurations, CVE exposées. Recevez un rapport structuré
-          OWASP Top 10 en moins de 60 secondes.
-        </p>
-
-        <div className="flex flex-wrap items-center gap-4">
-          <Link
-            href="/login?mode=signup"
-            className="group inline-flex items-center gap-3 px-6 py-3 bg-[#00ff88] text-black font-bold text-sm hover:bg-white transition-all"
-          >
-            LAUNCH_SCAN
-            <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-          </Link>
-          <Link
-            href="/login"
-            className="inline-flex items-center gap-2 px-6 py-3 border border-[#ffffff]/10 text-[#8899aa] text-sm hover:border-[#00ff88]/40 hover:text-white transition-all"
-          >
-            <Lock className="h-4 w-4" />
-            CONNECT_
-          </Link>
-        </div>
-
-        {/* Terminal preview */}
-        <div className="mt-20 border border-[#00ff88]/20 bg-black/40 backdrop-blur">
-          <div className="flex items-center gap-2 px-4 py-2 border-b border-[#00ff88]/10 bg-[#00ff88]/5">
-            <div className="w-2 h-2 rounded-full bg-red-500/60" />
-            <div className="w-2 h-2 rounded-full bg-yellow-500/60" />
-            <div className="w-2 h-2 rounded-full bg-[#00ff88]/60" />
-            <span className="text-[#00ff88]/40 text-xs ml-2">
-              secuscan@terminal ~ scan --target
-            </span>
+            <div
+              className="w-1.5 h-1.5 rounded-full animate-pulse"
+              style={{ background: "var(--astra-primary)" }}
+            />
+            Plateforme de sécurité tout-en-un
           </div>
-          <div className="p-6 text-xs leading-relaxed space-y-1">
-            <p>
-              <span className="text-[#00ff88]">$</span>{" "}
-              <span className="text-white">
-                secuscan --target https://api.target.com --depth full
-              </span>
-            </p>
-            <p className="text-[#8899aa]">
-              [*] Initializing scan engine...
-            </p>
-            <p className="text-[#8899aa]">
-              [*] Probing attack surface: 47 endpoints detected
-            </p>
-            <p className="text-yellow-400">
-              [!] VULN-001 HIGH — XSS Reflected @ /search?q=
-            </p>
-            <p className="text-yellow-400/70">
-              [!] VULN-002 MED — Missing security headers
-            </p>
-            <p className="text-blue-400">
-              [i] VULN-003 INFO — Server version exposed (nginx/1.21)
-            </p>
-            <p className="text-[#8899aa]">
-              [*] Generating OWASP report...
-            </p>
-            <p>
-              <span className="text-[#00ff88]">[✓]</span>{" "}
-              <span className="text-white">
-                Scan complete — 5 vulnerabilities found (1 HIGH, 2 MED, 1 LOW, 1 INFO)
-              </span>
-            </p>
+
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.08] mb-6">
+            <span style={{ color: "var(--astra-text)" }}>Sécurisez vos </span>
+            <span
+              className="bg-clip-text text-transparent"
+              style={{
+                backgroundImage: "linear-gradient(135deg, var(--astra-primary), var(--astra-blue))",
+              }}
+            >
+              applications
+            </span>
+            <br />
+            <span style={{ color: "var(--astra-text)" }}>avant qu&apos;il ne soit trop tard.</span>
+          </h1>
+
+          <p
+            className="text-lg md:text-xl leading-relaxed max-w-2xl mb-10"
+            style={{ color: "var(--astra-text-secondary)" }}
+          >
+            Scanner de vulnérabilités automatisé, tests de pénétration, mapping de compliance
+            et recommandations de remédiation — le tout dans un dashboard unifié.
+          </p>
+
+          <div className="flex flex-wrap items-center gap-4">
+            <Link
+              href="/login?mode=signup"
+              className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-lg font-semibold text-white text-sm transition-all hover:shadow-lg hover:shadow-indigo-500/25"
+              style={{
+                background: "linear-gradient(135deg, var(--astra-primary), var(--astra-blue))",
+              }}
+            >
+              Lancer un scan gratuit
+              <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
+            </Link>
+            <Link
+              href="/login"
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-lg font-semibold text-sm transition-all"
+              style={{
+                border: "1px solid var(--astra-border-hover)",
+                color: "var(--astra-text-secondary)",
+              }}
+            >
+              <Eye className="h-4 w-4" />
+              Voir une démo
+            </Link>
+          </div>
+        </div>
+
+        {/* Dashboard preview */}
+        <div
+          className="mt-16 rounded-xl overflow-hidden animate-fade-in"
+          style={{
+            background: "var(--astra-surface)",
+            border: "1px solid var(--astra-border)",
+            boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 80px -20px rgba(99, 102, 241, 0.15)",
+          }}
+        >
+          {/* Window chrome */}
+          <div
+            className="flex items-center gap-2.5 px-4 py-3 border-b"
+            style={{ borderColor: "var(--astra-border)" }}
+          >
+            <div className="flex gap-1.5">
+              <div className="w-2.5 h-2.5 rounded-full bg-red-500/70" />
+              <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/70" />
+              <div className="w-2.5 h-2.5 rounded-full bg-green-500/70" />
+            </div>
+            <div
+              className="flex-1 max-w-xs mx-auto h-6 rounded-md flex items-center justify-center text-xs"
+              style={{
+                background: "var(--astra-surface-2)",
+                color: "var(--astra-text-muted)",
+              }}
+            >
+              app.secuscan.io/dashboard
+            </div>
+          </div>
+          {/* Dashboard mockup content */}
+          <div className="p-6 grid grid-cols-4 gap-4">
+            {[
+              { label: "Security Score", value: "87/100", color: "var(--astra-success)" },
+              { label: "Vulnérabilités", value: "12", color: "var(--astra-high)" },
+              { label: "Corrigées", value: "38", color: "var(--astra-primary)" },
+              { label: "Compliance", value: "94%", color: "var(--astra-blue)" },
+            ].map((item) => (
+              <div
+                key={item.label}
+                className="rounded-lg p-4"
+                style={{ background: "var(--astra-surface-2)" }}
+              >
+                <p className="text-xs mb-1.5" style={{ color: "var(--astra-text-muted)" }}>
+                  {item.label}
+                </p>
+                <p className="text-2xl font-bold" style={{ color: item.color }}>
+                  {item.value}
+                </p>
+              </div>
+            ))}
+            {/* Severity bars */}
+            <div
+              className="col-span-2 rounded-lg p-4"
+              style={{ background: "var(--astra-surface-2)" }}
+            >
+              <p className="text-xs mb-3" style={{ color: "var(--astra-text-muted)" }}>
+                Répartition par sévérité
+              </p>
+              {[
+                { label: "Critical", width: "15%", color: "var(--astra-critical)" },
+                { label: "High", width: "35%", color: "var(--astra-high)" },
+                { label: "Medium", width: "60%", color: "var(--astra-medium)" },
+                { label: "Low", width: "80%", color: "var(--astra-low)" },
+              ].map((bar) => (
+                <div key={bar.label} className="flex items-center gap-3 mb-2 last:mb-0">
+                  <span className="text-xs w-14" style={{ color: "var(--astra-text-muted)" }}>
+                    {bar.label}
+                  </span>
+                  <div
+                    className="flex-1 h-2 rounded-full overflow-hidden"
+                    style={{ background: "var(--astra-surface-3)" }}
+                  >
+                    <div
+                      className="h-full rounded-full"
+                      style={{ width: bar.width, background: bar.color }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+            {/* Recent vulns */}
+            <div
+              className="col-span-2 rounded-lg p-4"
+              style={{ background: "var(--astra-surface-2)" }}
+            >
+              <p className="text-xs mb-3" style={{ color: "var(--astra-text-muted)" }}>
+                Dernières vulnérabilités
+              </p>
+              {[
+                { sev: "HIGH", name: "XSS Reflected", color: "var(--astra-high)" },
+                { sev: "MED", name: "Missing Headers", color: "var(--astra-medium)" },
+                { sev: "LOW", name: "Server Version", color: "var(--astra-low)" },
+              ].map((v) => (
+                <div
+                  key={v.name}
+                  className="flex items-center gap-2 mb-2 last:mb-0 text-xs"
+                >
+                  <span
+                    className="px-1.5 py-0.5 rounded text-[10px] font-bold"
+                    style={{ background: `${v.color}22`, color: v.color }}
+                  >
+                    {v.sev}
+                  </span>
+                  <span style={{ color: "var(--astra-text-secondary)" }}>{v.name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats */}
+      <section
+        className="relative z-10 border-y"
+        style={{
+          borderColor: "var(--astra-border)",
+          background: "rgba(17, 24, 39, 0.5)",
+        }}
+      >
+        <div className="max-w-7xl mx-auto px-6 py-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {STATS.map((s) => (
+              <div key={s.label} className="text-center">
+                <s.icon
+                  className="h-5 w-5 mx-auto mb-3"
+                  style={{ color: "var(--astra-primary)" }}
+                />
+                <p className="text-3xl font-extrabold mb-1" style={{ color: "var(--astra-text)" }}>
+                  {s.value}
+                </p>
+                <p className="text-sm" style={{ color: "var(--astra-text-muted)" }}>
+                  {s.label}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Features */}
-      <section className="relative z-20 border-t border-[#00ff88]/10 py-20 px-6">
+      <section className="relative z-10 py-24 px-6">
         <div className="max-w-7xl mx-auto">
-          <p className="text-[#00ff88]/50 text-xs tracking-widest mb-8">
-            {"// CAPABILITIES"}
-          </p>
-          <div className="grid md:grid-cols-3 gap-px bg-[#00ff88]/10">
-            {[
-              {
-                icon: Eye,
-                id: "01",
-                title: "RECONNAISSANCE",
-                desc: "Détection automatique de la surface d'attaque, endpoints exposés, technologies utilisées.",
-              },
-              {
-                icon: Zap,
-                id: "02",
-                title: "EXPLOITATION_SIM",
-                desc: "Simulation passive des vecteurs d'attaque OWASP Top 10, CVE et misconfiguration.",
-              },
-              {
-                icon: Shield,
-                id: "03",
-                title: "REPORT_&_FIX",
-                desc: "Rapport structuré avec score CVSS, POC et recommandations de remédiation priorisées.",
-              },
-            ].map((f) => (
+          <div className="text-center mb-16">
+            <p
+              className="text-sm font-semibold tracking-wider uppercase mb-3"
+              style={{ color: "var(--astra-primary)" }}
+            >
+              Fonctionnalités
+            </p>
+            <h2
+              className="text-3xl md:text-4xl font-extrabold tracking-tight mb-4"
+              style={{ color: "var(--astra-text)" }}
+            >
+              Tout ce qu&apos;il faut pour sécuriser vos apps
+            </h2>
+            <p
+              className="text-lg max-w-2xl mx-auto"
+              style={{ color: "var(--astra-text-secondary)" }}
+            >
+              Une plateforme complète alliant scan automatisé, pentest,
+              compliance et remédiation dans une interface unique.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {FEATURES.map((f, i) => (
               <div
-                key={f.id}
-                className="bg-[#050a0e] p-8 hover:bg-[#00ff88]/5 transition-colors group"
+                key={f.title}
+                className="group rounded-xl p-6 transition-all duration-300 hover:-translate-y-1"
+                style={{
+                  background: "var(--astra-surface)",
+                  border: "1px solid var(--astra-border)",
+                  animationDelay: `${i * 100}ms`,
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = "rgba(99, 102, 241, 0.3)";
+                  e.currentTarget.style.boxShadow = "0 8px 30px -10px rgba(99, 102, 241, 0.15)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = "var(--astra-border)";
+                  e.currentTarget.style.boxShadow = "none";
+                }}
               >
-                <div className="flex items-start justify-between mb-6">
-                  <f.icon className="h-6 w-6 text-[#00ff88] group-hover:scale-110 transition-transform" />
-                  <span className="text-[#00ff88]/20 text-xs font-black">
-                    {f.id}
-                  </span>
+                <div
+                  className={`w-10 h-10 rounded-lg flex items-center justify-center mb-4 bg-gradient-to-br ${f.color}`}
+                  style={{ opacity: 0.9 }}
+                >
+                  <f.icon className="h-5 w-5 text-white" />
                 </div>
-                <h3 className="text-white font-black text-sm tracking-widest mb-3">
+                <h3
+                  className="text-base font-bold mb-2"
+                  style={{ color: "var(--astra-text)" }}
+                >
                   {f.title}
                 </h3>
-                <p className="text-[#8899aa] text-xs leading-relaxed">
+                <p className="text-sm leading-relaxed" style={{ color: "var(--astra-text-secondary)" }}>
                   {f.desc}
                 </p>
               </div>
@@ -206,20 +423,133 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Integrations */}
+      <section
+        className="relative z-10 py-20 px-6 border-t"
+        style={{ borderColor: "var(--astra-border)" }}
+      >
+        <div className="max-w-7xl mx-auto text-center">
+          <p
+            className="text-sm font-semibold tracking-wider uppercase mb-3"
+            style={{ color: "var(--astra-primary)" }}
+          >
+            Intégrations
+          </p>
+          <h2
+            className="text-3xl md:text-4xl font-extrabold tracking-tight mb-4"
+            style={{ color: "var(--astra-text)" }}
+          >
+            S&apos;intègre à votre stack existant
+          </h2>
+          <p
+            className="text-lg max-w-xl mx-auto mb-12"
+            style={{ color: "var(--astra-text-secondary)" }}
+          >
+            Connectez SecuScan à vos outils CI/CD, ticketing et communication favoris.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            {INTEGRATIONS.map((name) => (
+              <div
+                key={name}
+                className="px-6 py-3 rounded-lg text-sm font-medium transition-all"
+                style={{
+                  background: "var(--astra-surface)",
+                  border: "1px solid var(--astra-border)",
+                  color: "var(--astra-text-secondary)",
+                }}
+              >
+                {name}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="relative z-10 py-24 px-6">
+        <div className="max-w-4xl mx-auto text-center">
+          <div
+            className="rounded-2xl p-12 relative overflow-hidden"
+            style={{
+              background: "linear-gradient(135deg, rgba(99,102,241,0.12), rgba(59,130,246,0.08))",
+              border: "1px solid rgba(99,102,241,0.2)",
+            }}
+          >
+            {/* Glow orb */}
+            <div
+              className="absolute top-0 right-0 w-64 h-64 rounded-full blur-[80px] opacity-20"
+              style={{ background: "var(--astra-primary)" }}
+            />
+            <div className="relative z-10">
+              <h2
+                className="text-3xl md:text-4xl font-extrabold tracking-tight mb-4"
+                style={{ color: "var(--astra-text)" }}
+              >
+                Prêt à sécuriser votre application ?
+              </h2>
+              <p
+                className="text-lg mb-8 max-w-lg mx-auto"
+                style={{ color: "var(--astra-text-secondary)" }}
+              >
+                Lancez votre premier scan gratuitement. Aucune carte de crédit requise.
+              </p>
+              <div className="flex flex-wrap justify-center gap-4">
+                <Link
+                  href="/login?mode=signup"
+                  className="group inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold text-white transition-all hover:shadow-lg hover:shadow-indigo-500/25"
+                  style={{
+                    background: "linear-gradient(135deg, var(--astra-primary), var(--astra-blue))",
+                  }}
+                >
+                  Commencer gratuitement
+                  <ChevronRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
+                </Link>
+                <Link
+                  href="/login"
+                  className="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold transition-all"
+                  style={{
+                    border: "1px solid var(--astra-border-hover)",
+                    color: "var(--astra-text-secondary)",
+                  }}
+                >
+                  Se connecter
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
-      <footer className="relative z-20 border-t border-[#00ff88]/10 py-6 px-6">
-        <div className="max-w-7xl mx-auto flex items-center justify-between text-xs text-[#8899aa]/50">
-          <span>{"// SECUSCAN"} © {new Date().getFullYear()}</span>
-          <span>AES-256 ENCRYPTED | GDPR COMPLIANT</span>
+      <footer
+        className="relative z-10 border-t py-8 px-6"
+        style={{ borderColor: "var(--astra-border)" }}
+      >
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-2">
+            <div
+              className="w-6 h-6 rounded-md flex items-center justify-center"
+              style={{
+                background: "linear-gradient(135deg, var(--astra-primary), var(--astra-blue))",
+              }}
+            >
+              <Shield className="h-3 w-3 text-white" />
+            </div>
+            <span className="text-sm font-semibold" style={{ color: "var(--astra-text-muted)" }}>
+              SecuScan
+            </span>
+          </div>
+          <div
+            className="flex items-center gap-6 text-xs"
+            style={{ color: "var(--astra-text-muted)" }}
+          >
+            <span>© {new Date().getFullYear()} SecuScan</span>
+            <span>AES-256 Encrypted</span>
+            <span>SOC 2 Compliant</span>
+            <span>GDPR Ready</span>
+          </div>
         </div>
       </footer>
-
-      <style>{`
-        @keyframes pulse {
-          0%, 100% { opacity: 0.08; }
-          50% { opacity: 0.15; }
-        }
-      `}</style>
     </div>
   );
 }
